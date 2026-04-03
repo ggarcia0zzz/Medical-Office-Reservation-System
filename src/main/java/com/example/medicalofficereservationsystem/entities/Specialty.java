@@ -6,11 +6,13 @@ import lombok.*;
 
 import java.util.Set;
 
+@Entity
 @Getter
 @Setter
 @Table(name="specialties")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 
 public class Specialty {
     @Id

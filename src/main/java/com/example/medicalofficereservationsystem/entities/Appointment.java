@@ -56,7 +56,7 @@ public class Appointment {
     private Office office;
 
     @ManyToOne
-    @JoinColumn(name="appointment_id")
-    private Appointment appointment;
+    @JoinColumn(name = "AppointmentType_id")
+    private AppointmentType appointmentType;
 
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -44,6 +45,11 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor")
     private Set<DoctorSchedule> doctorSchedules;
+
+    @OneToMany(mappedBy = "doctor")
+    @Column(name = "appointments")
+    @Builder.Default
+    private Set<Appointment> appointments = new HashSet<>();
 
 }
 

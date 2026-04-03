@@ -7,6 +7,8 @@ import lombok.*;
 import javax.annotation.processing.Generated;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="appointment_types")
@@ -30,5 +32,7 @@ public class AppointmentType {
     @Column(length = 255)
     private String description;
 
-
+    @Builder.Default
+    @OneToMany(mappedBy = "appointment")
+    private Set<Appointment> appointments = new HashSet<>();
 }

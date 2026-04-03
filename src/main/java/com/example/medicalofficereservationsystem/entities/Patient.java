@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "patients")
@@ -28,6 +30,11 @@ public class Patient {
 
     @Column(length = 20)
     private String phone;
+
+    @OneToMany(mappedBy = "patient")
+    @Column(name = "appointments")
+    @Builder.Default
+    private Set<Appointment> appointments = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)

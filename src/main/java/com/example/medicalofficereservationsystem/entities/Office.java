@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "offices")
@@ -29,6 +31,11 @@ public class Office {
     @Column(nullable = false, length = 20)
     @Builder.Default
     private OfficeStatus status = OfficeStatus.AVAILABLE;
+
+    @OneToMany(mappedBy = "office")
+    @Column(name = "appointments")
+    @Builder.Default
+    private Set<Appointment> appointments = new HashSet<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
