@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface PatientRepository extends JpaRepository<Patient,Long> {
     Optional<Patient> findById(Long id);
 
+    List<Patient> findAll();
 
     //Patients with the highest amount of NO_SHOW between dates
     @Query("SELECT p, COUNT(a) as noShows FROM Patient p JOIN p.appointments a " +

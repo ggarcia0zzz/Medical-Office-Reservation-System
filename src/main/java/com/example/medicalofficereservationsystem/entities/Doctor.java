@@ -44,10 +44,10 @@ public class Doctor {
     private Specialty specialty;
 
     @OneToMany(mappedBy = "doctor")
-    private Set<DoctorSchedule> doctorSchedules;
+    @Builder.Default
+    private Set<DoctorSchedule> doctorSchedules = new HashSet<>();
 
     @OneToMany(mappedBy = "doctor")
-    @Column(name = "appointments")
     @Builder.Default
     private Set<Appointment> appointments = new HashSet<>();
 
