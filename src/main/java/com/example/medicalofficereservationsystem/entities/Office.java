@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,12 @@ public class Office {
 
     @Column(length = 100)
     private String location;
+
+    @Column(name = "opening_hour",nullable = false)
+    private LocalTime openingHour;
+
+    @Column(name = "closing_hour",nullable = false)
+    private LocalTime closingHour;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)

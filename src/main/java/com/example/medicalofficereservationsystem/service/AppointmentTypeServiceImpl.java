@@ -6,6 +6,7 @@ import com.example.medicalofficereservationsystem.repository.AppointmentTypeRepo
 import com.example.medicalofficereservationsystem.service.Mapper.AppointmentTypeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +16,7 @@ public class AppointmentTypeServiceImpl implements AppointmentTypeService {
     private final AppointmentTypeMapper appointmentTypeMapper;
 
     @Override
+    @Transactional
     public AppointmentTypeResponse createAppointmentType(AppointmentTypeCreateRequest req) {
         AppointmentType at = appointmentTypeMapper.toEntity(req);
         return appointmentTypeMapper.toResponse(appointmentTypeRepository.save(at));

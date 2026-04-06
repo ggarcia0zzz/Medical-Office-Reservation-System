@@ -6,6 +6,7 @@ import com.example.medicalofficereservationsystem.repository.SpecialtyRepository
 import com.example.medicalofficereservationsystem.service.Mapper.SpecialtyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     private final SpecialtyMapper specialtyMapper;
 
     @Override
+    @Transactional
     public SpecialtyResponse createSpecialty(SpecialtyCreateRequest req) {
         Specialty s = specialtyMapper.toEntity(req);
         return specialtyMapper.toResponse(specialtyRepository.save(s));

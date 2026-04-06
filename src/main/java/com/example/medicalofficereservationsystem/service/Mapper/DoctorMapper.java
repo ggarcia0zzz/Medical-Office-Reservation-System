@@ -1,6 +1,7 @@
 package com.example.medicalofficereservationsystem.service.Mapper;
 
 import com.example.medicalofficereservationsystem.api.dto.DoctorDtos.*;
+import com.example.medicalofficereservationsystem.api.dto.ReportDtos.*;
 import com.example.medicalofficereservationsystem.entities.Doctor;
 import org.mapstruct.*;
 
@@ -11,6 +12,12 @@ public interface DoctorMapper {
     Doctor toEntity(DoctorCreateRequest req);
 
     DoctorResponse toResponse(Doctor doctor);
+
+    DoctorProductivityResponse toProductivityResponse(Doctor doctor);
+
+    DoctorProductivityReport toProductivityReport(DoctorProductivityResponse doctorInfo,
+                                                  Long completedAppointments, Long totalAppointments,
+                                                  float productivityPercent);
 
     /*
      * BeanMapping is used to control the Mapping behavior of the entire bean,

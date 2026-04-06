@@ -7,6 +7,7 @@ import com.example.medicalofficereservationsystem.repository.AppointmentReposito
 import com.example.medicalofficereservationsystem.service.Mapper.AppointmentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +16,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final AppointmentMapper appointmentMapper;
 
     @Override
+    @Transactional
     public AppointmentResponse createAppointment(AppointmentCreateRequest req) {
         Appointment a = appointmentMapper.toEntity(req);
         return appointmentMapper.toResponse(appointmentRepository.save(a));
@@ -26,6 +28,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    @Transactional
     public AppointmentResponse confirmAppointment(Long appointmentId) {
         Appointment a = appointmentRepository.findById(appointmentId).orElseThrow();
         a.setStatus(AppointmentStatus.CONFIRMED);
@@ -33,6 +36,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    @Transactional
     public AppointmentResponse noShowAppointment(Long appointmentId) {
         Appointment a = appointmentRepository.findById(appointmentId).orElseThrow();
         a.setStatus(AppointmentStatus.NO_SHOW);
@@ -40,6 +44,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    @Transactional
     public AppointmentResponse completeAppointment(Long id, AppointmentCompletionRequest comRequest) {
         Appointment a = appointmentRepository.findById(id).orElseThrow();
         appointmentMapper.completionFromRequest(a, comRequest);
@@ -47,6 +52,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    @Transactional
     public AppointmentResponse cancelAppointment(Long id, AppointmentCancelRequest cancelRequest) {
         Appointment a = appointmentRepository.findById(id).orElseThrow();
         appointmentMapper.cancelFromRequest(a, cancelRequest);

@@ -32,7 +32,6 @@ public class PatientServiceImpl implements PatientService{
 
     @Override
     public List<PatientResponse> getAllPatients() {
-        //what.
         return patientRepository.findAll().stream().map(patientMapper::toResponse).toList();
     }
 

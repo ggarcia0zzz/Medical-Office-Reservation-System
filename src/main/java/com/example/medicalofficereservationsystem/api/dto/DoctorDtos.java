@@ -1,5 +1,7 @@
 package com.example.medicalofficereservationsystem.api.dto;
 
+import com.example.medicalofficereservationsystem.entities.Specialty;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -13,4 +15,7 @@ public class DoctorDtos {
                                  SpecialtyDtos.SpecialtyResponse specialty,
                                  Set<DoctorScheduleDtos.DoctorScheduleResponse> doctorSchedules,
                                  Set<AppointmentDtos.AppointmentResponse> appointments) implements Serializable{};
+
+    public record DoctorProductivityResponse(Long id, String fullName, SpecialtyDtos.SpecialtyResponse specialty) implements Serializable{};
+
 }
