@@ -10,4 +10,6 @@ public class DoctorScheduleDtos {
 
     public record DoctorScheduleResponse(Long id, DayOfWeek dayOfWeek, LocalTime startTime,
                                          LocalTime endTime, Long doctorId) implements Serializable {};
+
+    public record AvailabilitySLotResponse(LocalTime startTime, LocalTime endTime) implements Serializable {};
 }
