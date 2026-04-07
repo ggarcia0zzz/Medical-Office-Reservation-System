@@ -6,18 +6,15 @@ import com.example.medicalofficereservationsystem.entities.AppointmentType;
 import com.example.medicalofficereservationsystem.entities.DoctorSchedule;
 import com.example.medicalofficereservationsystem.repository.AppointmentRepository;
 import com.example.medicalofficereservationsystem.repository.AppointmentTypeRepository;
-import com.example.medicalofficereservationsystem.repository.DoctorRepository;
 import com.example.medicalofficereservationsystem.repository.DoctorScheduleRepository;
 import com.example.medicalofficereservationsystem.service.Mapper.DoctorScheduleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

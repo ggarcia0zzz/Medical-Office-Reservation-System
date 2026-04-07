@@ -47,6 +47,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Transactional
     public AppointmentResponse completeAppointment(Long id, AppointmentCompletionRequest comRequest) {
         Appointment a = appointmentRepository.findById(id).orElseThrow();
+        a.setStatus(AppointmentStatus.COMPLETED);
         appointmentMapper.completionFromRequest(a, comRequest);
         return appointmentMapper.toResponse(appointmentRepository.save(a));
     }
@@ -55,6 +56,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Transactional
     public AppointmentResponse cancelAppointment(Long id, AppointmentCancelRequest cancelRequest) {
         Appointment a = appointmentRepository.findById(id).orElseThrow();
+        a.setStatus(AppointmentStatus.CANCELLED);
         appointmentMapper.cancelFromRequest(a, cancelRequest);
         return appointmentMapper.toResponse(appointmentRepository.save(a));
     }

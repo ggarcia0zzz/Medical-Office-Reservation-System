@@ -1,6 +1,5 @@
 package com.example.medicalofficereservationsystem.repository;
 
-import com.example.medicalofficereservationsystem.entities.Doctor;
 import com.example.medicalofficereservationsystem.entities.DoctorSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 

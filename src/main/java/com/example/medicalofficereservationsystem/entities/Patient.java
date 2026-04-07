@@ -3,6 +3,8 @@ package com.example.medicalofficereservationsystem.entities;
 import com.example.medicalofficereservationsystem.enums.PatientStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -41,9 +43,11 @@ public class Patient {
     @Builder.Default
     private PatientStatus status = PatientStatus.ACTIVE;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Instant updatedAt;
 }

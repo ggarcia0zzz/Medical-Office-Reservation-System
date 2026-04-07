@@ -43,7 +43,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     //Amount of appointments that were cancelled or the patient didnt show up by doctor's speciality
     @Query("SELECT COUNT(a) FROM Appointment a JOIN a.doctor d " +
-            "WHERE (a.status = CANCELLED OR a.status = NO_SHOW) AND d.specialty.id = :specialtyId")
+            "WHERE (a.status = AppointmentStatus.CANCELLED OR a.status = AppointmentStatus.NO_SHOW) AND d.specialty.id = :specialtyId")
     Long amountOfCanceledOrNoShowAppointmentBySpecialty(@Param("specialtyId") Long specialtyId);
 
     @Query("SELECT a FROM Appointment a WHERE a.doctor.id = :doctorId AND " +
