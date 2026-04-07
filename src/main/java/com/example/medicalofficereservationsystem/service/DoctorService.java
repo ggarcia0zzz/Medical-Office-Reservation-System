@@ -8,5 +8,5 @@ public interface DoctorService {
     DoctorResponse createDoctor(DoctorCreateRequest req);
     DoctorResponse getDoctorById(Long id);
     List<DoctorResponse> getAllDoctors();
-    DoctorResponse updateDoctor(DoctorUpdateRequest uptRequest);
+    DoctorResponse updateDoctor(Long id, DoctorUpdateRequest uptRequest);
 }

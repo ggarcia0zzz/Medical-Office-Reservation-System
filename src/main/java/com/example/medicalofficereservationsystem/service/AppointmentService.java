@@ -9,13 +9,13 @@ public interface AppointmentService {
 
     //Get /api/Appointments reads like get all appointments, but im unsure
 
-    AppointmentResponse confirmAppointment(AppointmentUpdateRequest uptRequest);
+    AppointmentResponse confirmAppointment(Long appointmentId);
 
-    AppointmentResponse noShowAppointment(AppointmentUpdateRequest uptRequest);
+    AppointmentResponse noShowAppointment(Long appointmentId);
 
-    AppointmentResponse completeAppointment(AppointmentCompletionRequest comRequest);
+    AppointmentResponse completeAppointment(Long id, AppointmentCompletionRequest comRequest);
 
-    AppointmentResponse cancelAppointment(AppointmentCancelRequest cancelRequest);
+    AppointmentResponse cancelAppointment(Long id, AppointmentCancelRequest cancelRequest);
 
 
 

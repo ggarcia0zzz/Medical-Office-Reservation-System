@@ -3,6 +3,8 @@ package com.example.medicalofficereservationsystem.entities;
 import com.example.medicalofficereservationsystem.enums.AppointmentStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -37,9 +39,11 @@ public class Appointment {
     @Column(name = "observations", length = 500)
     private String observations;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Instant updatedAt;
 
@@ -56,7 +60,7 @@ public class Appointment {
     private Office office;
 
     @ManyToOne
-    @JoinColumn(name = "AppointmentType_id")
+    @JoinColumn(name = "appointmentType_id")
     private AppointmentType appointmentType;
 
 }

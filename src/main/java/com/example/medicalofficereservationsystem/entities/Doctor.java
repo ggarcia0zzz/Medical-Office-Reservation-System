@@ -2,6 +2,8 @@ package com.example.medicalofficereservationsystem.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -33,9 +35,11 @@ public class Doctor {
     @Builder.Default
     private boolean active=true;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Instant updatedAt;
 

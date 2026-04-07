@@ -33,6 +33,6 @@ public class AppointmentType {
     private String description;
 
     @Builder.Default
-    @OneToMany(mappedBy = "appointment")
+    @OneToMany(mappedBy = "appointmentType")
     private Set<Appointment> appointments = new HashSet<>();
 }

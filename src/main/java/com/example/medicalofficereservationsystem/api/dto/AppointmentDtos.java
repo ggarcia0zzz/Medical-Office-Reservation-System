@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AppointmentDtos {
-    public record AppointmentCreateRequest(LocalDate startAt, LocalDateTime endAt,
+    public record AppointmentCreateRequest(LocalDateTime startAt, LocalDateTime endAt,
                                            Long patientId, Long doctorId, Long officeId,
                                            Long appointmentTypeId) implements Serializable{};
 

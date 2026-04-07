@@ -4,6 +4,7 @@ import com.example.medicalofficereservationsystem.entities.Appointment;
 import com.example.medicalofficereservationsystem.entities.Doctor;
 import com.example.medicalofficereservationsystem.entities.Patient;
 import com.example.medicalofficereservationsystem.enums.AppointmentStatus;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -42,11 +43,25 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     //Amount of appointments that were cancelled or the patient didnt show up by doctor's speciality
     @Query("SELECT COUNT(a) FROM Appointment a JOIN a.doctor d " +
-            "WHERE (a.status = CANCELLED OR a.status = NO_SHOW) AND d.specialty.id = :specialtyId")
+            "WHERE (a.status = AppointmentStatus.CANCELLED OR a.status = AppointmentStatus.NO_SHOW) AND d.specialty.id = :specialtyId")
     Long amountOfCanceledOrNoShowAppointmentBySpecialty(@Param("specialtyId") Long specialtyId);
 
     @Query("SELECT a FROM Appointment a WHERE a.doctor.id = :doctorId AND " +
             "CAST(a.startAt as localdate) = :date AND a.status != CANCELLED")
     List<Appointment> findByDoctorAndDate(@Param("doctorId") Long doctorId,
-                                          @Param("date") LocalDateTime date);
+                                          @Param("date") LocalDate date);
+
+
+    //Count number of appointments with an specific status of a specific doctor
+    Long countAppointmentByStatusIsAndDoctor_IdIs(AppointmentStatus status, Long doctorId);
+
+    //Count total number of appointments of a specific doctor
+    Long countAppointmentByDoctor_IdIs(Long doctorId);
+
+    //Get number of noShows of all patients from most to least
+    @Query("SELECT p, COUNT(a) as noShows FROM Patient p JOIN p.appointments a " +
+            "WHERE a.status = AppointmentStatus.NO_SHOW " +
+            "GROUP BY p ORDER BY noShows DESC")
+    List<Object[]> findPatientsByNoShows(Pageable pageable);
+
 }

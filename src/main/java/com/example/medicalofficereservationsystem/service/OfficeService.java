@@ -7,6 +7,6 @@ import java.util.List;
 public interface OfficeService {
     OfficeResponse createOffice(OfficeCreateRequest req);
     List<OfficeResponse> getAllOffices();
-    OfficeResponse updateOffice(OfficeUpdateRequest uptRequest);
+    OfficeResponse updateOffice(Long id, OfficeUpdateRequest uptRequest);
 
 }
