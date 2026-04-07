@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class DoctorScheduleServiceImpl implements DoctorScheduleService{
@@ -22,7 +24,9 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService{
     }
 
     @Override
-    public DoctorScheduleResponse getDoctorScheduleByDoctorId(Long doctorId) {
-        return doctorScheduleMapper.toResponse(doctorScheduleRepository.findById(doctorId).orElseThrow());
+    public List<DoctorScheduleResponse> getDoctorScheduleByDoctorId(Long doctorId) {
+
+        return doctorScheduleRepository.findByDoctor_Id(doctorId).stream().map(doctorScheduleMapper::toResponse).toList();
+
     }
 }
