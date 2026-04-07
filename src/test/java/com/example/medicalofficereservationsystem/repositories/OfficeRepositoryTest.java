@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -28,9 +29,9 @@ public class OfficeRepositoryTest extends AbstractRepositoryTest {
     @DisplayName("findByName: retorna el consultorio cuando el nombre si existe")
     void findByName_whenNameExists() {
 
-        officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").status(OfficeStatus.AVAILABLE)
-                .createdAt(Instant.now())
-                .build());
+        officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").
+                openingHour(LocalTime.of(8, 0)).closingHour(LocalTime.of(18, 0)).
+                status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
 
         Optional<Office> result = officeRepository.findByName("Consultorio 1");
 
@@ -53,9 +54,9 @@ public class OfficeRepositoryTest extends AbstractRepositoryTest {
     void findByName_notReturnOfficeWithDifferentName() {
 
         // Given
-        officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").status(OfficeStatus.AVAILABLE)
-                .createdAt(Instant.now())
-                .build());
+        officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").
+                        openingHour(LocalTime.of(8, 0)).closingHour(LocalTime.of(18, 0)).
+                        status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
 
         Optional<Office> result = officeRepository.findByName("Consultorio 2");
 

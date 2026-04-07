@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -56,7 +57,8 @@ public class AppointmentRepositoryTest extends AbstractRepositoryTest {
         doctor = doctorRepository.save(Doctor.builder().fullName("Dr Lopez").email("lopez@gmail.com").licenseNumber("LIC-111").active(true).specialty(specialty).createdAt(Instant.now()).build());
         patientOne = patientRepository.save(Patient.builder().fullName("Juan Garcia").phone("3054715961").email("jgarcia@gmail.com").status(PatientStatus.ACTIVE).createdAt(Instant.now()).build());
         patientTwo = patientRepository.save(Patient.builder().fullName("Saray Cantillo").phone("3007333348").email("sarita@gmail.com").status(PatientStatus.ACTIVE).createdAt(Instant.now()).build());
-        office = officeRepository.save(Office.builder().name("Consultorio 2").location("Piso 2").status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
+        office = officeRepository.save(Office.builder().name("Consultorio 2").location("Piso 2").openingHour(LocalTime.of(8, 0)).closingHour(LocalTime.of(18, 0)).status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
+        appointmentType = appointmentTypeRepository.save(AppointmentType.builder().name("Medicina General").durationMinutes(60).build());
 
 
     }
