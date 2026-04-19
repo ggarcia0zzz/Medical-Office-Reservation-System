@@ -59,7 +59,6 @@ public class AvailabilitySlotServiceImpl implements AvailabilitySlotService {
         }
 
         return slots;
-
     }
 
 }
