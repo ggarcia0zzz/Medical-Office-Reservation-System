@@ -4,6 +4,7 @@ import com.example.medicalofficereservationsystem.entities.Appointment;
 import com.example.medicalofficereservationsystem.enums.PatientStatus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
@@ -12,7 +13,9 @@ import java.util.Set;
 public class PatientDtos {
 
     public record PatientCreateRequest(@NotBlank(message = "Es obligatorio el nombre completo")@Size(min = 2, max =100,message = "El nombre debe tener entre 2 y 100 caracteres") String fullName, @NotBlank(message = "El email es obligatorio")
-    @Email(message = "El email no tiene un formato válido") String email, String phone) implements Serializable {};
+    @Email(message = "El email no tiene un formato válido") String email, @NotBlank(message = "El teléfono es obligatorio")
+    @Pattern(regexp = "^[0-9]{7,15}$", message = "El teléfono debe contener entre 7 y 15 dígitos numéricos")
+    String phone) implements Serializable {};
 
     public record PatientUpdateRequest(@Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")String fullName,@Email(message = "El email no tiene un formato válido") String email, String phone,
                                        PatientStatus status, Set<AppointmentDtos.AppointmentResponse> appointments) implements Serializable {};
