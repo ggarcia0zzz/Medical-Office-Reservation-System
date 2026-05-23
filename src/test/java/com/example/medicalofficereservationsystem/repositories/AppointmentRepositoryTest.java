@@ -229,8 +229,14 @@ public class AppointmentRepositoryTest extends AbstractRepositoryTest {
     @DisplayName("existsOverlappingAppointmentByOffice: no afecta a otros consultorios que tengan el mismo horario")
     void existsOverlappingAppointmentByOffice_shouldNotAffectOtherOffices(){
 
-        Office office2 = officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").status(OfficeStatus.AVAILABLE)
-                .createdAt(Instant.now()).build());
+        Office office2 = officeRepository.save(Office.builder()
+                .name("Consultorio 1")
+                .location("Piso 1")
+                .openingHour(LocalTime.of(8, 0))
+                .closingHour(LocalTime.of(18, 0))
+                .status(OfficeStatus.AVAILABLE)
+                .createdAt(Instant.now())
+                .build());
 
         saveAppointment(patientOne,doctor,office2,BASE_TIME,
                 BASE_TIME.plusHours(1),AppointmentStatus.CONFIRMED);

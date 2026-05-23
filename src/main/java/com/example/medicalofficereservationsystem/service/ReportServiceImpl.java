@@ -47,7 +47,7 @@ public class ReportServiceImpl implements ReportService {
             float productivityPercent = (float) completedAppointments/totalAppointments *100;
             return doctorMapper.toProductivityReport(doctor, completedAppointments, totalAppointments, productivityPercent);
         }
-        return null;
+        return doctorMapper.toProductivityReport(doctor, 0L, 0L, 0);
     }
 
     @Override
