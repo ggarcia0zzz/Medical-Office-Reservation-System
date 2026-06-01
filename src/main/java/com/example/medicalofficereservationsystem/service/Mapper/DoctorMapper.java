@@ -9,6 +9,7 @@ import org.mapstruct.*;
 public interface DoctorMapper {
 
     @Mapping(target = "id",  ignore = true)
+    @Mapping(target = "specialty", ignore = true)
     Doctor toEntity(DoctorCreateRequest req);
 
     DoctorResponse toResponse(Doctor doctor);

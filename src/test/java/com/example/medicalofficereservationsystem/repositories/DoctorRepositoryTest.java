@@ -73,7 +73,7 @@ public class DoctorRepositoryTest extends AbstractRepositoryTest {
                 .createdAt(Instant.now())
                 .build());
 
-        Set<Doctor> result = doctorRepository.findBySpecialtyAndActiveIsTrue(cardiology);
+        Set<Doctor> result = doctorRepository.findBySpecialtyIdAndActiveIsTrue(cardiology.getId());
 
         assertThat(result).hasSize(2);
         assertThat(result).allMatch(Doctor::isActive);
@@ -91,7 +91,7 @@ public class DoctorRepositoryTest extends AbstractRepositoryTest {
                 .createdAt(Instant.now())
                 .build());
 
-        Set<Doctor> result = doctorRepository.findBySpecialtyAndActiveIsTrue(cardiology);
+        Set<Doctor> result = doctorRepository.findBySpecialtyIdAndActiveIsTrue(cardiology.getId());
 
         assertThat(result).isEmpty();
     }
@@ -106,7 +106,7 @@ public class DoctorRepositoryTest extends AbstractRepositoryTest {
                 .createdAt(Instant.now())
                 .build());
 
-        Set<Doctor> result = doctorRepository.findBySpecialtyAndActiveIsTrue(cardiology);
+        Set<Doctor> result = doctorRepository.findBySpecialtyIdAndActiveIsTrue(cardiology.getId());
 
         assertThat(result).isEmpty();
     }

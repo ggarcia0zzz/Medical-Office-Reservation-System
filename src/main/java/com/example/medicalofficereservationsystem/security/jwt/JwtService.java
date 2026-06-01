@@ -53,4 +53,7 @@ public class JwtService {
         return Jwts.parser().setSigningKey(key).build().parseClaimsJws(token).getBody();
     }
 
+    public long getExpirationSeconds() {
+        return expirationSeconds;
+    }
 }

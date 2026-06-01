@@ -19,6 +19,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     //Find appointment from a patient by status
     Set<Appointment> findByStatusAndPatient(AppointmentStatus status, Patient patient);
 
+    List<Appointment> findAll();
+
     //Find Appointments by date range
     Set<Appointment> findByStartAtBetween(LocalDateTime startAtAfter, LocalDateTime startAtBefore);
 

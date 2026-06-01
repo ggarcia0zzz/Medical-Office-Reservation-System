@@ -6,4 +6,6 @@ public interface AppointmentTypeService {
     AppointmentTypeResponse createAppointmentType(AppointmentTypeCreateRequest req);
 
     AppointmentTypeResponse getAppointmentTypeById(Long id);
+
+
 }

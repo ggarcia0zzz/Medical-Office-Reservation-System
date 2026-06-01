@@ -1,6 +1,7 @@
 package com.example.medicalofficereservationsystem.entities;
 
 import com.example.medicalofficereservationsystem.enums.PatientStatus;
+import com.example.medicalofficereservationsystem.security.entities.AppUser;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,6 +43,10 @@ public class Patient {
     @Column(nullable = false, length = 20)
     @Builder.Default
     private PatientStatus status = PatientStatus.ACTIVE;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private AppUser appUser;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

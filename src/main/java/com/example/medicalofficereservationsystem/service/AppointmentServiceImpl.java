@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
@@ -25,6 +27,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public AppointmentResponse getAppointmentById(Long id) {
         return appointmentMapper.toResponse(appointmentRepository.findById(id).orElseThrow());
+    }
+
+    @Override
+    public List<AppointmentResponse> getAllAppointments() {
+        return appointmentRepository.findAll().stream().map(appointmentMapper::toResponse).toList();
     }
 
     @Override

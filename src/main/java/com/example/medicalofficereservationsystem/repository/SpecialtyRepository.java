@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface SpecialtyRepository extends JpaRepository<Specialty,Long> {
 
-    Optional<Specialty> findByName(String name);
+    Optional<Specialty> findById(Long specialtyId);
 
     List<Specialty> findAll();
 

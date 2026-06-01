@@ -1,0 +1,30 @@
+services:
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: postgres-backend
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  spring-app:
+    build: .
+    container_name: spring-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+    environment:
+      DB_HOST: postgres-db
+      DB_PORT: 5432
+      DB_NAME: mydb
+      DB_USER: postgres
+      DB_PASSWORD: password
+      SECURITY_JWT_SECRET: "969faef2ef65878aa4e3f9762e5aa3bb97dbcc74eb997113d267382ef7b0bbce"
+
+volumes:
+  postgres_data:

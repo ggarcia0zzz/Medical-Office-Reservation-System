@@ -1,5 +1,6 @@
 package com.example.medicalofficereservationsystem.entities;
 
+import com.example.medicalofficereservationsystem.security.entities.AppUser;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,7 +23,7 @@ public class Doctor {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="full_name",length=150)
+    @Column(name="full_name", nullable = false, length=150)
     private String fullName;
 
     @Column(nullable=false,unique=true,length=100)
@@ -30,6 +31,10 @@ public class Doctor {
 
     @Column(name="license_number",nullable = false,unique=true,length=50)
     private String licenseNumber;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private AppUser appUser;
 
     @Column(name="is_active",nullable=false)
     @Builder.Default
