@@ -76,7 +76,7 @@ public class DoctorRepositoryTest extends AbstractRepositoryTest {
         Set<Doctor> result = doctorRepository.findBySpecialtyIdAndActiveIsTrue(cardiology.getId());
 
         assertThat(result).hasSize(2);
-        assertThat(result).allMatch(Doctor::isActive);
+        assertThat(result).allMatch(Doctor::getActive);
         assertThat(result).allMatch(d -> d.getSpecialty().getId().equals(cardiology.getId()));
     }
 

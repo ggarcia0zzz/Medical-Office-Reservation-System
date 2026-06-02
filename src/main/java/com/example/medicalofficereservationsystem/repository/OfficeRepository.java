@@ -7,13 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface OfficeRepository extends JpaRepository<Office,Long> {
 
-    Optional<Office> findByName(String name);
+    Optional<Office> findById(Long id);
 
     Page<Office> findAll(Pageable pageable);
 

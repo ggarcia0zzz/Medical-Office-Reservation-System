@@ -25,12 +25,14 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
+    @Transactional
     public PatientResponse getPatientById(Long id) {
         var p = patientRepository.findById(id).orElseThrow();
         return patientMapper.toResponse(p);
     }
 
     @Override
+    @Transactional
     public List<PatientResponse> getAllPatients() {
         return patientRepository.findAll().stream().map(patientMapper::toResponse).toList();
     }

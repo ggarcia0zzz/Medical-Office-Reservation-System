@@ -29,11 +29,11 @@ public class OfficeRepositoryTest extends AbstractRepositoryTest {
     @DisplayName("findByName: retorna el consultorio cuando el nombre si existe")
     void findByName_whenNameExists() {
 
-        officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").
+        Office o = officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").
                 openingHour(LocalTime.of(8, 0)).closingHour(LocalTime.of(18, 0)).
                 status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
 
-        Optional<Office> result = officeRepository.findByName("Consultorio 1");
+        Optional<Office> result = officeRepository.findById(o.getId());
 
         assertThat(result).isPresent();
         assertThat(result.get().getName()).isEqualTo("Consultorio 1");
@@ -44,7 +44,7 @@ public class OfficeRepositoryTest extends AbstractRepositoryTest {
     @DisplayName("findByName: retorna vacío cuando el nombre no existe")
     void findByName_whenNameDoesNotExists() {
 
-        Optional<Office> result = officeRepository.findByName("Consultorio Inexistente");
+        Optional<Office> result = officeRepository.findById(32L);
 
         assertThat(result).isEmpty();
     }
@@ -54,11 +54,11 @@ public class OfficeRepositoryTest extends AbstractRepositoryTest {
     void findByName_notReturnOfficeWithDifferentName() {
 
         // Given
-        officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").
+        Office o = officeRepository.save(Office.builder().name("Consultorio 1").location("Piso 1").
                         openingHour(LocalTime.of(8, 0)).closingHour(LocalTime.of(18, 0)).
                         status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
 
-        Optional<Office> result = officeRepository.findByName("Consultorio 2");
+        Optional<Office> result = officeRepository.findById(2L);
 
         assertThat(result).isEmpty();
     }

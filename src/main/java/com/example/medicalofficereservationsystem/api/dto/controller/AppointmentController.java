@@ -9,6 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -25,7 +27,12 @@ public class AppointmentController {
         return ResponseEntity.created(location).body(body);
     }
 
-    @GetMapping("/apointments/{appointmentId}")
+    @GetMapping("/appointments")
+    public ResponseEntity<List<AppointmentResponse>> getAll(){
+        return ResponseEntity.ok(service.getAllAppointments());
+    }
+
+    @GetMapping("/appointments/{appointmentId}")
     public ResponseEntity<AppointmentResponse> get(@PathVariable Long appointmentId) {
         return ResponseEntity.ok(service.getAppointmentById(appointmentId));
     }

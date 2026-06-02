@@ -3,7 +3,7 @@ package com.example.medicalofficereservationsystem.service;
 import com.example.medicalofficereservationsystem.api.dto.AppointmentDtos.*;
 import com.example.medicalofficereservationsystem.entities.Appointment;
 import com.example.medicalofficereservationsystem.enums.AppointmentStatus;
-import com.example.medicalofficereservationsystem.repository.AppointmentRepository;
+import com.example.medicalofficereservationsystem.repository.*;
 import com.example.medicalofficereservationsystem.service.Mapper.AppointmentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
     private final AppointmentRepository appointmentRepository;
+    private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
+    private final OfficeRepository officeRepository;
+    private final AppointmentTypeRepository appointmentTypeRepository;
     private final AppointmentMapper appointmentMapper;
 
     @Override
     @Transactional
     public AppointmentResponse createAppointment(AppointmentCreateRequest req) {
         Appointment a = appointmentMapper.toEntity(req);
+
+        System.out.println("Patient: " + a.getPatient());
+        System.out.println("Doctor: " + a.getDoctor());
+        System.out.println("Office: " + a.getOffice());
+        System.out.println("AppointmentType: " + a.getAppointmentType());
+
+        a.setDoctor(doctorRepository.findById(req.doctorId()).orElseThrow());
+        a.setPatient(patientRepository.findById(req.patientId()).orElseThrow());
+        a.setOffice(officeRepository.findById(req.officeId()).orElseThrow());
+        a.setAppointmentType(appointmentTypeRepository.findById(req.appointmentTypeId()).orElseThrow());
+
         return appointmentMapper.toResponse(appointmentRepository.save(a));
     }
 

@@ -27,11 +27,13 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
+    @Transactional
     public DoctorResponse getDoctorById(Long id) {
         return doctorMapper.toResponse(doctorRepository.findById(id).orElseThrow());
     }
 
     @Override
+    @Transactional
     public List<DoctorResponse> getAllDoctors() {
         return doctorRepository.findAll().stream().map(doctorMapper::toResponse).toList();
     }
@@ -41,6 +43,7 @@ public class DoctorServiceImpl implements DoctorService{
     public DoctorResponse updateDoctor(Long id, DoctorUpdateRequest uptRequest) {
         Doctor d = doctorRepository.findById(id).orElseThrow();
         doctorMapper.updateFromRequest(d, uptRequest);
+        d.setSpecialty(specialtyRepository.findById(uptRequest.specialtyId()).orElse(null));
         return doctorMapper.toResponse(doctorRepository.save(d));
     }
 }

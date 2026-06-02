@@ -9,6 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -31,4 +33,8 @@ public class AppointmentTypeController {
         return ResponseEntity.ok(service.getAppointmentTypeById(appointmentTypeId));
     }
 
+    @GetMapping("/appointmenttypes")
+    public ResponseEntity<List<AppointmentTypeResponse>> getAall() {
+        return ResponseEntity.ok(service.getAllAppointmentTypes());
+    }
 }

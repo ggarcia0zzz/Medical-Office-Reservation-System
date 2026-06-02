@@ -12,6 +12,7 @@ public interface DoctorMapper {
     @Mapping(target = "specialty", ignore = true)
     Doctor toEntity(DoctorCreateRequest req);
 
+
     DoctorResponse toResponse(Doctor doctor);
 
     DoctorProductivityResponse toProductivityResponse(Doctor doctor);

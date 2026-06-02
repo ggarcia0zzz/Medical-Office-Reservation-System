@@ -8,4 +8,6 @@ public interface SpecialtyService {
     SpecialtyResponse createSpecialty(SpecialtyCreateRequest req);
 
     List<SpecialtyResponse> getAllSpecialties();
+
+    SpecialtyResponse getSpecialtyById(Long id);
 }

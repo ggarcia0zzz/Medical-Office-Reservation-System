@@ -24,8 +24,16 @@ public class OfficeServiceImpl implements OfficeService{
     }
 
     @Override
+    @Transactional
     public List<OfficeResponse> getAllOffices() {
         return officeRepository.findAll().stream().map(officeMapper::toResponse).toList();
+    }
+
+    @Override
+    @Transactional
+    public OfficeResponse getOfficeById(Long id) {
+        Office o = officeRepository.findById(id).orElse(null);
+        return officeMapper.toResponse(o);
     }
 
     @Override

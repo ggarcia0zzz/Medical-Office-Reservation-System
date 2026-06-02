@@ -28,12 +28,17 @@ public class OfficeController {
         return ResponseEntity.created(location).body(body);
     }
 
-    @GetMapping("/office")
-    public ResponseEntity<List<OfficeResponse>> getOffice() {
+    @GetMapping("/offices")
+    public ResponseEntity<List<OfficeResponse>> getAllOffices() {
         return ResponseEntity.ok(service.getAllOffices());
     }
 
-    @PatchMapping("/office/{officeId}")
+    @GetMapping("offices/{officeId}")
+    public ResponseEntity<OfficeResponse> getOffice(@PathVariable Long officeId) {
+        return ResponseEntity.ok(service.getOfficeById(officeId));
+    }
+
+    @PatchMapping("/offices/{officeId}")
     public ResponseEntity<OfficeResponse> update(@PathVariable Long officeId,
                                                  @Valid @RequestBody OfficeUpdateRequest req){
         return ResponseEntity.ok(service.updateOffice(officeId, req));

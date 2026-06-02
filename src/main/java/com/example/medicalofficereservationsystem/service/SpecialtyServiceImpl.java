@@ -27,4 +27,10 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     public List<SpecialtyResponse> getAllSpecialties() {
         return specialtyRepository.findAll().stream().map(specialtyMapper::toResponse).toList();
     }
+
+    @Override
+    public SpecialtyResponse getSpecialtyById(Long id) {
+        Specialty s = specialtyRepository.findById(id).orElse(null);
+        return specialtyMapper.toResponse(s);
+    }
 }

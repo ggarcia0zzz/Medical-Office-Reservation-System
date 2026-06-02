@@ -33,4 +33,10 @@ public class SpecialtyController {
         return ResponseEntity.ok(service.getAllSpecialties());
     }
 
+    @GetMapping("/specialties/{specialtyId}")
+    public ResponseEntity<SpecialtyResponse> getSpecialtyById(@PathVariable Long specialtyId) {
+        return ResponseEntity.ok(service.getSpecialtyById(specialtyId));
+    }
+
+
 }
