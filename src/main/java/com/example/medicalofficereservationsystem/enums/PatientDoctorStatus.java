@@ -1,6 +1,6 @@
 package com.example.medicalofficereservationsystem.enums;
 
-public enum PatientStatus {
+public enum PatientDoctorStatus {
     ACTIVE,
     INACTIVE
 }

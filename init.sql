@@ -28,11 +28,11 @@ INSERT INTO offices (name, location, opening_hour, closing_hour, status, created
 
 -- Doctors (no user_id — register through auth endpoint if needed)
 INSERT INTO doctors (full_name, email, license_number, is_active, specialty_id, created_at, updated_at) VALUES
-                                                                                                            ('Dr. Andrés Mora',    'andres.mora@clinic.com',    'LIC-001', true, 1, NOW(), NOW()),
-                                                                                                            ('Dra. Paula Vega',    'paula.vega@clinic.com',     'LIC-002', true, 2, NOW(), NOW()),
-                                                                                                            ('Dra. Clara Ríos',    'clara.rios@clinic.com',     'LIC-003', true, 3, NOW(), NOW()),
-                                                                                                            ('Dr. Luis Herrera',   'luis.herrera@clinic.com',   'LIC-004', true, 4, NOW(), NOW()),
-                                                                                                            ('Dra. Sofía Blanco',  'sofia.blanco@clinic.com',   'LIC-005', true, 5, NOW(), NOW());
+                                                                                                            ('Dr. Andrés Mora',    'andres.mora@clinic.com',    'LIC-001', 'ACTIVE', 1, NOW(), NOW()),
+                                                                                                            ('Dra. Paula Vega',    'paula.vega@clinic.com',     'LIC-002', 'ACTIVE', 2, NOW(), NOW()),
+                                                                                                            ('Dra. Clara Ríos',    'clara.rios@clinic.com',     'LIC-003', 'ACTIVE', 3, NOW(), NOW()),
+                                                                                                            ('Dr. Luis Herrera',   'luis.herrera@clinic.com',   'LIC-004', 'ACTIVE', 4, NOW(), NOW()),
+                                                                                                            ('Dra. Sofía Blanco',  'sofia.blanco@clinic.com',   'LIC-005', 'ACTIVE', 5, NOW(), NOW());
 
 -- Doctor Schedules
 INSERT INTO doctor_schedules (day_of_week, start_time, end_time, doctor_id) VALUES

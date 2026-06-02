@@ -4,6 +4,7 @@ package com.example.medicalofficereservationsystem.repositories;
 import com.example.medicalofficereservationsystem.entities.Doctor;
 import com.example.medicalofficereservationsystem.entities.DoctorSchedule;
 import com.example.medicalofficereservationsystem.entities.Specialty;
+import com.example.medicalofficereservationsystem.enums.PatientDoctorStatus;
 import com.example.medicalofficereservationsystem.repository.DoctorRepository;
 import com.example.medicalofficereservationsystem.repository.DoctorScheduleRepository;
 import com.example.medicalofficereservationsystem.repository.SpecialtyRepository;
@@ -43,13 +44,13 @@ public class DoctorScheduleRepositoryTest extends AbstractRepositoryTest {
                 .description("Especialidad del corazón")
                 .build());
 
-        doctor = doctorRepository.save(Doctor.builder().fullName("Dr Lopez").email("lopez@gmail.com").licenseNumber("LIC-001").active(true)
+        doctor = doctorRepository.save(Doctor.builder().fullName("Dr Lopez").email("lopez@gmail.com").licenseNumber("LIC-001").active(PatientDoctorStatus.ACTIVE)
                 .specialty(specialty)
                 .createdAt(Instant.now())
                 .build());
 
         doctor2 = doctorRepository.save(Doctor.builder().fullName("Dr Garcia").email("garcia@gmail.com").licenseNumber("LIC-002")
-                .active(true)
+                .active(PatientDoctorStatus.ACTIVE)
                 .specialty(specialty)
                 .createdAt(Instant.now())
                 .build());

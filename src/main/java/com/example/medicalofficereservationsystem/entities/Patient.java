@@ -1,6 +1,6 @@
 package com.example.medicalofficereservationsystem.entities;
 
-import com.example.medicalofficereservationsystem.enums.PatientStatus;
+import com.example.medicalofficereservationsystem.enums.PatientDoctorStatus;
 import com.example.medicalofficereservationsystem.security.entities.AppUser;
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,7 +8,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,7 +41,7 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default
-    private PatientStatus status = PatientStatus.ACTIVE;
+    private PatientDoctorStatus status = PatientDoctorStatus.ACTIVE;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

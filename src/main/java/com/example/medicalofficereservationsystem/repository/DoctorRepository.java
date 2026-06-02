@@ -1,6 +1,7 @@
 package com.example.medicalofficereservationsystem.repository;
 
 import com.example.medicalofficereservationsystem.entities.Doctor;
+import com.example.medicalofficereservationsystem.enums.PatientDoctorStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,7 +14,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
     List<Doctor> findAll();
 
-    // Find active doctors by specialty
-    Set<Doctor> findBySpecialtyIdAndActiveIsTrue(Long specialtyId);
+    Set<Doctor> findBySpecialtyIdAndActive(Long specialtyId, PatientDoctorStatus active);
 
 }

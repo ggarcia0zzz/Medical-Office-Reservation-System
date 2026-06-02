@@ -4,7 +4,7 @@ package com.example.medicalofficereservationsystem.repositories;
 import com.example.medicalofficereservationsystem.entities.*;
 import com.example.medicalofficereservationsystem.enums.AppointmentStatus;
 import com.example.medicalofficereservationsystem.enums.OfficeStatus;
-import com.example.medicalofficereservationsystem.enums.PatientStatus;
+import com.example.medicalofficereservationsystem.enums.PatientDoctorStatus;
 import com.example.medicalofficereservationsystem.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -54,9 +54,9 @@ public class AppointmentRepositoryTest extends AbstractRepositoryTest {
         specialtyRepository.deleteAll();
 
         Specialty specialty= specialtyRepository.save(Specialty.builder().name("Cardiology").build());
-        doctor = doctorRepository.save(Doctor.builder().fullName("Dr Lopez").email("lopez@gmail.com").licenseNumber("LIC-111").active(true).specialty(specialty).createdAt(Instant.now()).build());
-        patientOne = patientRepository.save(Patient.builder().fullName("Juan Garcia").phone("3054715961").email("jgarcia@gmail.com").status(PatientStatus.ACTIVE).createdAt(Instant.now()).build());
-        patientTwo = patientRepository.save(Patient.builder().fullName("Saray Cantillo").phone("3007333348").email("sarita@gmail.com").status(PatientStatus.ACTIVE).createdAt(Instant.now()).build());
+        doctor = doctorRepository.save(Doctor.builder().fullName("Dr Lopez").email("lopez@gmail.com").licenseNumber("LIC-111").active(PatientDoctorStatus.ACTIVE).specialty(specialty).createdAt(Instant.now()).build());
+        patientOne = patientRepository.save(Patient.builder().fullName("Juan Garcia").phone("3054715961").email("jgarcia@gmail.com").status(PatientDoctorStatus.ACTIVE).createdAt(Instant.now()).build());
+        patientTwo = patientRepository.save(Patient.builder().fullName("Saray Cantillo").phone("3007333348").email("sarita@gmail.com").status(PatientDoctorStatus.ACTIVE).createdAt(Instant.now()).build());
         office = officeRepository.save(Office.builder().name("Consultorio 2").location("Piso 2").openingHour(LocalTime.of(8, 0)).closingHour(LocalTime.of(18, 0)).status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
         appointmentType = appointmentTypeRepository.save(AppointmentType.builder().name("Medicina General").durationMinutes(60).build());
 
@@ -175,7 +175,7 @@ public class AppointmentRepositoryTest extends AbstractRepositoryTest {
     void existsOverlappingAppointmentByDoctor_ShouldNotAffectOtherDoctors(){
 
         Doctor doctor2 = doctorRepository.save(Doctor.builder().fullName("Dr Orozco").email("orozco2@gmail.com")
-                .licenseNumber("LIC-333").active(true).specialty(doctor.getSpecialty()).createdAt(Instant.now()).build());
+                .licenseNumber("LIC-333").active(PatientDoctorStatus.ACTIVE).specialty(doctor.getSpecialty()).createdAt(Instant.now()).build());
 
         saveAppointment(patientOne,doctor2,office,BASE_TIME,
                 BASE_TIME.plusHours(1),AppointmentStatus.CONFIRMED);
@@ -286,7 +286,7 @@ public class AppointmentRepositoryTest extends AbstractRepositoryTest {
         Specialty otherSpecialty = specialtyRepository.save(Specialty.builder().name("Neurología").build());
 
         Doctor otherDoctor = doctorRepository.save(Doctor.builder().fullName("Dr. Good").email("good@gmail.com")
-                .licenseNumber("LIC-222").active(true).specialty(otherSpecialty)
+                .licenseNumber("LIC-222").active(PatientDoctorStatus.ACTIVE).specialty(otherSpecialty)
                 .createdAt(Instant.now())
                 .build());
 

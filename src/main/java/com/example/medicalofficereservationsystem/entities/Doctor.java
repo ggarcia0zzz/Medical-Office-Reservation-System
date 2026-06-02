@@ -1,5 +1,6 @@
 package com.example.medicalofficereservationsystem.entities;
 
+import com.example.medicalofficereservationsystem.enums.PatientDoctorStatus;
 import com.example.medicalofficereservationsystem.security.entities.AppUser;
 import jakarta.persistence.*;
 import lombok.*;
@@ -36,9 +37,10 @@ public class Doctor {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser appUser;
 
+    @Enumerated(EnumType.STRING)
     @Column(name="is_active",nullable=false)
     @Builder.Default
-    private Boolean active=true;
+    private PatientDoctorStatus active = PatientDoctorStatus.ACTIVE;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

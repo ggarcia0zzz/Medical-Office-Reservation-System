@@ -9,9 +9,9 @@ public class DoctorDtos {
     public record DoctorCreateRequest(String fullName, String email, String licenseNumber, Long specialtyId ) implements Serializable {};
 
     public record DoctorUpdateRequest(String fullName, String email, String licenseNumber,
-                                      Long specialtyId, Boolean active) implements Serializable{};
+                                      Long specialtyId, String active) implements Serializable{};
 
-    public record DoctorResponse(Long id, String fullName, String email, String licenseNumber, Boolean active,
+    public record DoctorResponse(Long id, String fullName, String email, String licenseNumber, String active,
                                  SpecialtyDtos.SpecialtyResponse specialty,
                                  Set<DoctorScheduleDtos.DoctorScheduleResponse> doctorSchedules,
                                  Set<AppointmentDtos.AppointmentResponse> appointments) implements Serializable{};

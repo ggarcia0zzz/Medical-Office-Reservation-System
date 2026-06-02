@@ -4,7 +4,7 @@ package com.example.medicalofficereservationsystem.repositories;
 import com.example.medicalofficereservationsystem.entities.*;
 import com.example.medicalofficereservationsystem.enums.AppointmentStatus;
 import com.example.medicalofficereservationsystem.enums.OfficeStatus;
-import com.example.medicalofficereservationsystem.enums.PatientStatus;
+import com.example.medicalofficereservationsystem.enums.PatientDoctorStatus;
 import com.example.medicalofficereservationsystem.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +49,7 @@ public class PatientRepositoryTest extends AbstractRepositoryTest {
         Specialty specialty = specialtyRepository.save(Specialty.builder().name("Cardiología").build());
 
         doctor = doctorRepository.save(Doctor.builder().fullName("Dr. Lopez").email("lopez@gmail.com").licenseNumber("LIC-001")
-                .active(true)
+                .active(PatientDoctorStatus.ACTIVE)
                 .specialty(specialty)
                 .createdAt(Instant.now())
                 .build());
@@ -59,12 +59,12 @@ public class PatientRepositoryTest extends AbstractRepositoryTest {
                 status(OfficeStatus.AVAILABLE).createdAt(Instant.now()).build());
 
         patientOne = patientRepository.save(Patient.builder().fullName("Juan Garcia").email("jgarcia@gmail.com").phone("3054715961")
-                .status(PatientStatus.ACTIVE)
+                .status(PatientDoctorStatus.ACTIVE)
                 .createdAt(Instant.now())
                 .build());
 
         patientTwo = patientRepository.save(Patient.builder().fullName("Saray Cantillo").email("sarita@gmail.com").phone("3007333348")
-                .status(PatientStatus.ACTIVE)
+                .status(PatientDoctorStatus.ACTIVE)
                 .createdAt(Instant.now())
                 .build());
     }
